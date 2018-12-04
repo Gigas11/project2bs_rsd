@@ -61,113 +61,87 @@
     </nav>
         <h2 class="quizHeader">Take a Quiz!</h2>
 
-        <table style="width:583px">
-            <tr>
-                <td>
-                    <div>
-                        <p class="question">1. Quiz question #1</p>
+        <div >
+            <div class="row">
+                 <div>
+                        <p class="question">1. Are you over 18?</p>
 
                         <ul>
                             <input class="answer" type="radio" name="q1" value="1">
-                            <label id="correctString1">correct answer 1</label>
+                            <label id="correctString1">Over 18</label>
                             <br>
                             <input class="answer" type="radio" name="q1" value="0">
-                            <label>wrong answer</label>
+                            <label>Under 18</label>
                             <br>
-                            <input class="answer" type="radio" name="q1" value="0">
-                            <label>wrong answer</label>
-                            <br>
-                            <input class="answer" type="radio" name="q1" value="0">
-                            <label>wrong answer</label>
-                        </ul>
+                         </ul>
                     </div>
-                </td>
-                <td>
-                    <div>
-                        <p class="question">2. Quiz question #2</p>
+                              <div>
+                        <p class="question">2. Have you been conviced of a felony?</p>
 
                         <ul>
                             <input class="answer" type="radio" name="q2" value="0">
-                            <label>wrong answer</label>
+                            <label>Yes</label>
                             <br>
                             <input class="answer" type="radio" name="q2" value="1">
-                            <label id="correctString2">correct answer 2</label>
+                            <label id="correctString2">No</label>
                             <br>
-                            <input class="answer" type="radio" name="q2" value="0">
-                            <label>wrong answer</label>
-                            <br>
-                            <input class="answer" type="radio" name="q2" value="0">
-                            <label>wrong answer</label>
                         </ul>
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div>
-                        <p class="question">3. Quiz question #3</p>
+            </div>
+        <div class=row>
+              <div>
+                        <p class="question">3. Do you have 75-hours to dedicate to this course?</p>
 
                         <ul>
                             <input class="answer" type="radio" name="q3" value="0">
-                            <label>wrong answer</label>
+                            <label>No</label>
                             <br>
                             <input class="answer" type="radio" name="q3" value="1">
-                            <label id="correctString3">correct answer 3</label>
+                            <label id="correctString3">Yes</label>
                             <br>
-                            <input class="answer" type="radio" name="q3" value="0">
-                            <label>wrong answer</label>
-                            <br>
-                            <input class="answer" type="radio" name="q3" value="0">
-                            <label>wrong answer</label>
-                        </ul>
+                    </ul>
                     </div>
-                </td>
-                <td>
-                    <div>
-                        <p class="question">4. Quiz question #4</p>
+                      <div>
+                        <p class="question">4. Are you a US citzen or alien lawfully admitted for permanent residence or a person having a work authorization card from the INS or a work permit spnsored by an employer</p>
 
                         <ul>
                             <input class="answer" type="radio" name="q4" value="0">
-                            <label>wrong answer</label>
+                            <label>No</label>
                             <br>
                             <input class="answer" type="radio" name="q4" value="1">
-                            <label id="correctString4">correct answer 4</label>
+                            <label id="correctString4">Yes</label>
                             <br>
-                            <input class="answer" type="radio" name="q4" value="0">
-                            <label>wrong answer</label>
-                            <br>
-                            <input class="answer" type="radio" name="q4" value="0">
-                            <label>wrong answer</label>
-                        </ul>
+                            </ul>
                     </div>
-                </td>
-            </tr>
-        </table>
-        <br />
-        <div class="submitter">
+            <br/>
+            <br>
+            <br>
+            <div>
+            <div>
+            <div class="submitter">
             <input class="quizSubmit" id="submitButton" onClick="submitQuiz()" type="submit" value="Submit" />
         </div>
+                </div>
 
-        <!--show only wrong answers on submit-->
+        
         <div class="quizAnswers" id="correctAnswer1"></div>
         <div class="quizAnswers" id="correctAnswer2"></div>
         <div class="quizAnswers" id="correctAnswer3"></div>
         <div class="quizAnswers" id="correctAnswer4"></div>
 
-        <!--show score upon submit-->
+      
         <div>
             <h2 class="quizScore" id="userScore"></h2>
         </div>
 
 
-    </body>
 
 
     <script>
         function submitQuiz() {
             console.log('submitted');
 
-            // get each answer score
+           
             function answerScore(qName) {
                 var radiosNo = document.getElementsByName(qName);
 
@@ -177,25 +151,25 @@
                         var answerValue = Number(radiosNo[i].value);
                     }
                 }
-                // change NaNs to zero
+               
                 if (isNaN(answerValue)) {
                     answerValue = 0;
                 }
                 return answerValue;
             }
 
-            // calc score with answerScore function
+          
             var calcScore = (answerScore('q1') + answerScore('q2') + answerScore('q3') + answerScore('q4'));
-            console.log("CalcScore: " + calcScore); // it works!
+            console.log("CalcScore: " + calcScore);
 
-            // function to return correct answer string
+           
             function correctAnswer(correctStringNo, qNumber) {
-                console.log("qNumber: " + qNumber); // logs 1,2,3,4 after called below
+                console.log("qNumber: " + qNumber); 
                 return ("The correct answer for question #" + qNumber + ": &nbsp;<strong>" +
                     (document.getElementById(correctStringNo).innerHTML) + "</strong>");
             }
 
-            // print correct answers only if wrong (calls correctAnswer function)
+           
             if (answerScore('q1') === 0) {
                 document.getElementById('correctAnswer1').innerHTML = correctAnswer('correctString1', 1);
             }
@@ -209,7 +183,7 @@
                 document.getElementById('correctAnswer4').innerHTML = correctAnswer('correctString4', 4);
             }
 
-            // calculate "possible score" integer
+            
             var questionCountArray = document.getElementsByClassName('question');
 
             var questionCounter = 0;
@@ -217,11 +191,11 @@
                 questionCounter++;
             }
 
-            // show score as "score/possible score"
+           
             var showScore = "Your Score: " + calcScore + "/" + questionCounter;
-            // if 4/4, "perfect score!"
+      
             if (calcScore === questionCounter) {
-                showScore = showScore + "&nbsp; <strong>Perfect Score!</strong>"
+                showScore = showScore + "&nbsp; <strong>Perfect Score! Apply Today!</strong>"
             };
             document.getElementById('userScore').innerHTML = showScore;
         }
@@ -234,5 +208,8 @@
 
         });
     </script>
-</body>
+            </div>
+            </div>
+        </div>
+    </body>
 </html>
